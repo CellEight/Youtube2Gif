@@ -1,6 +1,6 @@
 # Youtube2Gif
 
-<--- ![Aesthetic Pixel Rain](rain.gif) --->
+![Aesthetic Pixel Rain](rain.gif)
 
 Youtube2Gif is a command line utility written in python that let's you easily downlaod and convert youtube videos into GIF animations.
 Great if you want to create animated desktops backgrounds!
@@ -26,7 +26,7 @@ python ./yt2gif.py -t https://www.youtube.com/watch\?v\=9iUvuaChDEg -o geohot.gi
 
 And then view your master piece in your image viewr of choice!
 
-<--- ![Rap god geohot sued by sony](./geohot.gif) --->
+![Rap god geohot sued by sony](./geohot.gif)
 
 ## Contirubtions
 

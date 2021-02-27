@@ -23,7 +23,7 @@ def downloadVideo(target):
     
 def convertVideo(tmp_file, output):
     # definitely needs more command line arguments
-    return os.system(f"ffmpeg \-i {tmp_file} {output}")
+    return os.system(f"ffmpeg \-i {tmp_file} -vf 'fps=10,scale=320:-1' {output}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
@@ -32,6 +32,8 @@ if __name__ == "__main__":
     """)    
     parser.add_argument("-t", "--target", dest="target", default=None, help="URL of video to download")
     parser.add_argument("-o", "--output", dest="output", default="output.gif", help="Output filename")
+    parser.add_argument("-d", "--dimension", dest="dim", default=None, help="Dimension of output")
+    parser.add_argument("-f", "--fps", dest="fps", default=None, help="Fps of output")
 
     args =  parser.parse_args()
     if not validateArgs(args):
