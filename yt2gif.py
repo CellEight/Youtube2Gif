@@ -1,4 +1,5 @@
 import os
+import re
 import argparse
 import subprocess
 
@@ -7,6 +8,10 @@ def validateArgs(args):
     if not args.target:
         print("[!] Target not set! Please select a target with '-t <target>'")
         return False
+    elif not re.match("^[0-9]+$",args.fps):
+        print(f"[!] Invalid value '{args.fps}' for fps")
+    elif not re.match("^[0-9]+,[\-]*[0-9]+$",args.dim):
+        print(f"[!] Invalid value '{args.dim} for dim")
     else:
         return True
 
@@ -21,9 +26,10 @@ def downloadVideo(target):
         tmp_file = None
     return (tmp_success, dl_success, tmp_file)
     
-def convertVideo(tmp_file, output):
+def convertVideo(tmp_file, output, dim, fps):
     # definitely needs more command line arguments
-    return os.system(f"ffmpeg \-i {tmp_file} -vf 'fps=10,scale=320:-1' {output}")
+    print(dim,fps)
+    return os.system(f"ffmpeg \-i {tmp_file} -vf 'fps={fps},scale={dim[0]}:{dim[1]}' {output}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
@@ -32,8 +38,8 @@ if __name__ == "__main__":
     """)    
     parser.add_argument("-t", "--target", dest="target", default=None, help="URL of video to download")
     parser.add_argument("-o", "--output", dest="output", default="output.gif", help="Output filename")
-    parser.add_argument("-d", "--dimension", dest="dim", default=None, help="Dimension of output")
-    parser.add_argument("-f", "--fps", dest="fps", default=None, help="Fps of output")
+    parser.add_argument("-d", "--dimension", dest="dim", default='320,-1', help="Dimension of output")
+    parser.add_argument("-f", "--fps", dest="fps", default=10, help="Fps of output")
 
     args =  parser.parse_args()
     if not validateArgs(args):
@@ -52,7 +58,7 @@ if __name__ == "__main__":
         exit(1)
 
     print(f"[+] File successfully downloaded, stored at {tmp_file}. Beginning Conversion... ")
-    conv_success = convertVideo(tmp_file,args.output)
+    conv_success = convertVideo(tmp_file,args.output,args.dim.split(','),args.fps)
     if conv_success != 0:
         print(f"[!] Error, Failed to convert file")
 
