@@ -21,7 +21,7 @@ sudo pacman -S ffmpeg youtube-dl
 To use the program just run the following substituting the video you want to convert for this charming video of [rap god geohot](https://www.youtube.com/watch?v=9iUvuaChDEg)
 
 ```
-python ./yt2gif.py -t https://www.youtube.com/watch\?v\=9iUvuaChDEg -o geohot.gif
+python ./yt2gif.py -t https://www.youtube.com/watch\?v\=9iUvuaChDEg -o geohot.gif -d 720,-1 -f 10
 ```
 
 And then view your master piece in your image viewer of choice!
