@@ -26,8 +26,6 @@ python ./yt2gif.py -t https://www.youtube.com/watch\?v\=9iUvuaChDEg -o geohot.gi
 
 And then view your master piece in your image viewer of choice!
 
-![Rap god geohot sued by sony](./geohot.gif)
-
 ## Contributions
 
 I plan to add allot more functionality to this app (mostly relating to adding more command line options for formatting output size and duration etc) however if there's anything you want to add to the project don't hesitate to branch it!
